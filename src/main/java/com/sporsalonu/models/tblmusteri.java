@@ -5,6 +5,7 @@
  */
 package com.sporsalonu.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -19,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table()
-public class tblmusteri {
+public class tblmusteri implements Serializable {
     @Id
     @SequenceGenerator(name = "ali",sequenceName = "sqtblmusteriid",initialValue = 1,allocationSize = 1)
     @GeneratedValue(generator = "ali")
@@ -28,13 +30,20 @@ public class tblmusteri {
     private String tckimlik;
     @Column(name = "ad",length = 50)
     private String ad;
-    
+    @Column(name = "soyad",length = 50)
     private String soyad;
+    @Column(name = "cinsiyet",length = 10)
     private String cinsiyet;
+    @Column(name = "dogumtarihi")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dogumtarihi;
+    @Column(name = "ceptel",length = 50)
     private String ceptel;
+    @Column(name = "yakintel",length = 50)
     private String yakintel;
+    @Column(name = "resim",length = 50)
     private String resim;
+    @Column(name = "saglikdurumu",length = 50)
     private String saglikdurumu;
 
     public int getId() {

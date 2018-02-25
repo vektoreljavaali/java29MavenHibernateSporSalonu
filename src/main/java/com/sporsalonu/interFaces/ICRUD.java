@@ -16,8 +16,8 @@ public interface ICRUD<V> {
     
     public void Kaydet(V o);
     public void Duzenle(V o);
-    public void Sil(long id);
-    public List<V> Listele();
-    public V Bul(long id);
+    public void Sil(V o);
+    public List Listele();
+    public V Bul(int id);
         
 }

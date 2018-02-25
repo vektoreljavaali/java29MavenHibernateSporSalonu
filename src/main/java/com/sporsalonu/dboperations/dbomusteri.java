@@ -5,9 +5,12 @@
  */
 package com.sporsalonu.dboperations;
 
+import com.sporsalonu.interFaces.BaseServices;
 import com.sporsalonu.interFaces.ICRUD;
 import com.sporsalonu.models.tblmusteri;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -15,29 +18,40 @@ import java.util.List;
  */
 public class dbomusteri implements ICRUD<tblmusteri>{
 
+    BaseServices<tblmusteri> bs = new BaseServices<>();
     @Override
     public void Kaydet(tblmusteri o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    bs.kaydet(o);
     }
 
     @Override
-    public void Duzenle(tblmusteri o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Duzenle(tblmusteri o) { 
+    bs.duzenle(o);
     }
 
     @Override
-    public void Sil(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void Sil(tblmusteri o) {
+        bs.sil(o);
     }
 
     @Override
     public List<tblmusteri> Listele() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return bs.listele(tblmusteri.class);
     }
 
     @Override
-    public tblmusteri Bul(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public tblmusteri Bul(int id) {
+        Criteria cr = bs.getSession().createCriteria(tblmusteri.class);
+        cr.add(Restrictions.eq("id", id));
+        return (tblmusteri)cr.uniqueResult();
     }
+    
+    public tblmusteri Bultckimlikten(String tckimlik){
+    Criteria cr = bs.getSession().createCriteria(tblmusteri.class);
+    cr.add(Restrictions.eq("tckimlik", tckimlik));
+    return (tblmusteri)cr.uniqueResult();
+    }
+
+    
     
 }
